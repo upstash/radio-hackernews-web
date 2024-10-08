@@ -2,6 +2,10 @@ import { useRef } from "react";
 import { useWavesurfer } from "@wavesurfer/react";
 import colors from "tailwindcss/colors";
 import { Story } from "@/utils/types";
+import {
+  IconPlayerPauseFilled,
+  IconPlayerPlayFilled,
+} from "@tabler/icons-react";
 
 const StoryComp = ({
   title,
@@ -10,16 +14,17 @@ const StoryComp = ({
   summaryAudio,
   readableTime,
 }: Story) => {
+  console.log(url);
   const containerRef = useRef(null);
 
   const { wavesurfer, isReady, isPlaying, currentTime } = useWavesurfer({
     container: containerRef,
-    url: "https://fly.storage.tigris.dev/radio-hackernews/audio/41718030_1727918222021_summary.mp3",
+    url: summaryAudio,
     waveColor: colors.zinc["300"],
     progressColor: colors.emerald["500"],
     cursorColor: colors.emerald["500"],
     cursorWidth: 2,
-    height: 40,
+    height: 32,
     barWidth: 2,
     barGap: 2,
     barRadius: 4,
@@ -32,28 +37,33 @@ const StoryComp = ({
 
   return (
     <article className="w-full border rounded-xl p-4 grid gap-2 shadow-sm">
-      <header>
-        <h4>{title}</h4>
-        <p>{summaryAudio}</p>
-      </header>
+      <h4 className="font-bold text-balance">{title}</h4>
 
       <div className="" ref={containerRef} />
 
-      <footer className="flex items-center gap-4">
-        <button onClick={onPlayPause}>{isPlaying ? "Pause" : "Play"}</button>
+      <div className="flex items-center gap-4 text-sm">
+        <button
+          className="border flex items-center justify-center rounded-full size-8"
+          onClick={onPlayPause}
+        >
+          {isPlaying ? (
+            <IconPlayerPauseFilled size={16} />
+          ) : (
+            <IconPlayerPlayFilled size={16} />
+          )}
+        </button>
+        <span>Time: {readableTime}</span>
 
         <span className="ml-auto" />
-        <span>Score: {score}</span>
-        <span>Time: {readableTime}</span>
         <a
           href={url}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-blue-500 hover:underline"
+          className="underline"
         >
-          Source
+          Score: {score}
         </a>
-      </footer>
+      </div>
     </article>
   );
 };

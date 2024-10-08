@@ -32,7 +32,11 @@ export default function Home() {
         <h2 className="text-xl opacity-60">Top 10 Stories</h2>
 
         <div className="mt-8 grid gap-6">
-          <StoryComp
+          {stories.map((story) => (
+            <StoryComp key={story.id} {...story} />
+          ))}
+
+          {/*<StoryComp
             id={"3434"}
             title={
               "Nobel Prize in Physics Awarded for Machine Learning and Neural Networks"
@@ -43,20 +47,7 @@ export default function Home() {
             summaryAudio="dasda"
             readableTime="dasd"
             score={4.3}
-          />
-          <StoryComp
-            id={"3434"}
-            title={"An illustrated proof of the CAP theorem (2018)"}
-            url={
-              "https://fly.storage.tigris.dev/radio-hackernews/audio/41718030_1727918222021_summary.mp3"
-            }
-            summaryAudio="dasda"
-            readableTime="dasd"
-            score={4.3}
-          />
-          {stories.map((story) => (
-            <StoryComp key={story.id} {...story} />
-          ))}
+          />*/}
         </div>
       </main>
     </div>
