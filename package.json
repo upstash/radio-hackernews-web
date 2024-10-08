@@ -13,6 +13,7 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@upstash/redis": "^1.34.2",
+    "@wavesurfer/react": "^1.0.7",
     "clsx": "^2.1.1",
     "next": "14.2.14",
     "postcss": "^8",
@@ -22,6 +23,6 @@
     "tailwind-merge": "^2.5.3",
     "tailwindcss": "^3.4.1",
     "typescript": "^5",
-    "zod": "^3.23.8"
+    "wavesurfer.js": "^7.8.6"
   }
 }
