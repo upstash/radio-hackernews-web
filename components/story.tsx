@@ -6,6 +6,7 @@ import {
   IconPlayerPauseFilled,
   IconPlayerPlayFilled,
 } from "@tabler/icons-react";
+import clsx from "clsx";
 
 const StoryComp = ({
   title,
@@ -43,7 +44,10 @@ const StoryComp = ({
 
       <div className="flex items-center gap-4 text-sm">
         <button
-          className="border flex items-center justify-center rounded-full size-8"
+          className={clsx(
+            "border flex items-center justify-center rounded-full size-8",
+            isPlaying ? "bg-emerald-500 text-white border-current" : "",
+          )}
           onClick={onPlayPause}
         >
           {isPlaying ? (
