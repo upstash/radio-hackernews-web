@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useWavesurfer } from "@wavesurfer/react";
 import colors from "tailwindcss/colors";
 import { Story } from "@/utils/types";
@@ -9,12 +9,18 @@ import {
 import clsx from "clsx";
 
 const StoryComp = ({
+  id,
   title,
   url,
   score,
   summaryAudio,
   readableTime,
-}: Story) => {
+  onChangeActiveId = () => {},
+  activeId,
+}: Story & {
+  onChangeActiveId: (id: string) => void;
+  activeId: string | undefined;
+}) => {
   console.log(url);
   const containerRef = useRef(null);
 
@@ -27,25 +33,43 @@ const StoryComp = ({
     cursorWidth: 2,
     height: 32,
     barWidth: 2,
-    barGap: 2,
+    barGap: 3,
     barRadius: 4,
     normalize: true,
   });
 
+  useEffect(() => {
+    if (activeId !== id) {
+      onPause();
+    }
+  }, [activeId]);
+
+  const onPause = () => {
+    if (!wavesurfer) return;
+    wavesurfer.pause();
+  };
+
   const onPlayPause = () => {
-    wavesurfer && wavesurfer.playPause();
+    if (!wavesurfer) return;
+    onChangeActiveId(id);
+    wavesurfer.playPause();
   };
 
   return (
-    <article className="w-full border rounded-xl p-4 grid gap-2 shadow-sm">
-      <h4 className="font-bold text-balance">{title}</h4>
+    <article
+      className={clsx(
+        "w-full border rounded-xl p-4 sm:p-6 grid gap-2 shadow-sm",
+        isPlaying && "bg-emerald-50 text-emerald-900",
+      )}
+    >
+      <h4 className={"font-bold text-balance"}>{title}</h4>
 
-      <div className="" ref={containerRef} />
+      <div ref={containerRef} />
 
-      <div className="flex items-center gap-4 text-sm">
+      <div className="flex items-center gap-2 text-sm font-mono">
         <button
           className={clsx(
-            "border flex items-center justify-center rounded-full size-8",
+            "-ml-1 border flex items-center justify-center rounded-full size-7",
             isPlaying ? "bg-emerald-500 text-white border-current" : "",
           )}
           onClick={onPlayPause}
@@ -56,14 +80,13 @@ const StoryComp = ({
             <IconPlayerPlayFilled size={16} />
           )}
         </button>
-        <span>Time: {readableTime}</span>
 
-        <span className="ml-auto" />
+        <span className="opacity-60">Time: {readableTime}</span>
         <a
+          className="ml-auto opacity-60"
           href={url}
           target="_blank"
           rel="noopener noreferrer"
-          className="underline"
         >
           Score: {score}
         </a>

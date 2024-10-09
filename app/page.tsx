@@ -6,6 +6,7 @@ import { getTopStories } from "@/app/actions";
 import { Story } from "@/utils/types";
 
 export default function Home() {
+  const [activeId, setActiveId] = useState<string | undefined>(undefined);
   const [stories, setStories] = useState<Story[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -33,7 +34,12 @@ export default function Home() {
 
         <div className="mt-8 grid gap-6">
           {stories.map((story) => (
-            <StoryComp key={story.id} {...story} />
+            <StoryComp
+              key={story.id}
+              {...story}
+              activeId={activeId}
+              onChangeActiveId={setActiveId}
+            />
           ))}
 
           {/*<StoryComp
