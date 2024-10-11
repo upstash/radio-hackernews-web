@@ -14,6 +14,7 @@ const StoryComp = ({
   url,
   score,
   summaryAudio,
+  summaryAudioDuration,
   readableTime,
   onChangeActiveId = () => {},
   activeId,
@@ -26,6 +27,7 @@ const StoryComp = ({
 
   const { wavesurfer, isReady, isPlaying, currentTime } = useWavesurfer({
     container: containerRef,
+    duration: summaryAudioDuration,
     url: summaryAudio,
     waveColor: colors.zinc["300"],
     progressColor: colors.emerald["500"],
@@ -62,33 +64,41 @@ const StoryComp = ({
         isPlaying && "bg-emerald-50 text-emerald-900",
       )}
     >
-      <h4 className={"font-bold text-balance"}>{title}</h4>
+      <h4 className={"font-bold text-balance"}>
+        <a
+            className="ml-auto"
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+        >{title}
+        </a>
+        </h4>
 
-      <div ref={containerRef} />
+      <div ref={containerRef}/>
 
       <div className="flex items-center gap-2 text-sm font-mono">
         <button
-          className={clsx(
-            "-ml-1 border flex items-center justify-center rounded-full size-7",
-            isPlaying ? "bg-emerald-500 text-white border-current" : "",
-          )}
-          onClick={onPlayPause}
+            className={clsx(
+                "-ml-1 border flex items-center justify-center rounded-full size-7",
+                isPlaying ? "bg-emerald-500 text-white border-current" : "",
+            )}
+            onClick={onPlayPause}
         >
           {isPlaying ? (
-            <IconPlayerPauseFilled size={16} />
+              <IconPlayerPauseFilled size={16}/>
           ) : (
-            <IconPlayerPlayFilled size={16} />
+              <IconPlayerPlayFilled size={16}/>
           )}
         </button>
 
         <span className="opacity-60">Time: {readableTime}</span>
         <a
-          className="ml-auto opacity-60"
-          href={url}
-          target="_blank"
-          rel="noopener noreferrer"
+            className="ml-auto opacity-60"
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
         >
-          Score: {score}
+          Points: {score}
         </a>
       </div>
     </article>

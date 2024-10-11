@@ -30,16 +30,18 @@ export default function Home() {
     <div className="max-w-screen-sm mx-auto px-8 py-16">
       <main className="">
         <h1 className="text-3xl font-bold">Radio Hackernews</h1>
-        <h2 className="text-xl opacity-60">Top 10 Stories</h2>
+        <h2 className="text-xl opacity-60">Recent Top Stories</h2>
 
         <div className="mt-8 grid gap-6">
           {stories.map((story) => (
+              story.summaryAudio ?
             <StoryComp
               key={story.id}
               {...story}
               activeId={activeId}
               onChangeActiveId={setActiveId}
             />
+                  : null
           ))}
 
           {/*<StoryComp
