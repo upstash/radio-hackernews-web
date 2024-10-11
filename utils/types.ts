@@ -3,7 +3,7 @@ export interface Story {
   title: string;
   url: string;
   score: number;
-  summaryAudioDuration: string;
+  summaryAudioDuration: number;
   summaryAudio: string;
   readableTime: string; // Added this field
 }
