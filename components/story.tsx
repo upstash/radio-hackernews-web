@@ -57,6 +57,12 @@ const StoryComp = ({
     wavesurfer.playPause();
   };
 
+  const shortDate = new Date(readableTime).toLocaleDateString("en-US", {
+    month: "short",
+    day: "2-digit",
+    year: "2-digit",
+  });
+
   return (
     <article
       className={clsx(
@@ -91,7 +97,8 @@ const StoryComp = ({
           )}
         </button>
 
-        <span className="opacity-60">Time: {readableTime}</span>
+        <span className="opacity-60">Date: {shortDate}</span>
+        {/*<span className="opacity-60">Duration: {summaryAudioDuration} seconds</span>*/}
         <a
             className="ml-auto opacity-60"
             href={url}
