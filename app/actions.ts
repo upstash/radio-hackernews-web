@@ -7,7 +7,7 @@ const redis = Redis.fromEnv();
 
 export async function getTopStories(): Promise<Result> {
   try {
-    const data: [] = await redis.zrange("stories", 0, 9, { rev: true });
+    const data: [] = await redis.zrange("stories", 0, 50, { rev: true });
 
     return {
       code: ResultCode.Success,
