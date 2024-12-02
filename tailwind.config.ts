@@ -10,10 +10,6 @@ const config: Config = {
       fontFamily: {
         sans: ["var(--font-inter)"],
       },
-      colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
-      },
     },
   },
   plugins: [],

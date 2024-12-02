@@ -5,14 +5,13 @@ import Footer from "@/components/footer";
 
 const defaultFont = Inter({
   variable: "--font-inter",
-  display: "swap",
-  style: "normal",
-  subsets: ["latin-ext"],
+  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
   title: "Radio Hackernews",
-  description: "Audio Recap of Top Hackernews Stories - Open Source Project by Upstash",
+  description:
+    "Audio Recap of Top Hackernews Stories - Open Source Project by Upstash",
 };
 
 export default function RootLayout({
@@ -21,10 +20,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${defaultFont.variable} antialiased`}>
-      {children}
-      <Footer />
+    <html lang="en" className={`${defaultFont.variable}`}>
+      <body className="antialiased text-sm md:text-base">
+        {children}
+        <Footer />
       </body>
     </html>
   );
