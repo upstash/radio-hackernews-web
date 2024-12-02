@@ -34,7 +34,7 @@ export async function GET() {
     </itunes:owner>
     <itunes:explicit>false</itunes:explicit>
     <itunes:category text="Technology"/>
-    <itunes:image href="https://radio-hackernews-web.vercel.app/podcast.jpeg"/>
+    <itunes:image href="https://radio-hackernews-web.vercel.app/images/podcast.jpeg"/>
     
     ${data
             .map(
