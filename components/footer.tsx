@@ -15,17 +15,17 @@ export default function Footer() {
               target="_blank"
               className="underline"
           >
-              Upstash Workflow,
+              Upstash Workflow
           </a>
-
+          &nbsp; | &nbsp;
           <a
               href="https://elevenlabs.io/"
               target="_blank"
               className="underline"
           >
-              ElevenLabs,
+              ElevenLabs
           </a>
-
+          &nbsp; | &nbsp;
           <a
               href="https://www.tigrisdata.com/"
               target="_blank"

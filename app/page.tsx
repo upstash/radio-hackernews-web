@@ -31,6 +31,9 @@ export default function Home() {
       <main className="">
         <h1 className="text-3xl font-bold">Radio Hackernews</h1>
         <h2 className="text-xl opacity-60">Audio Recap of Top Hackernews Stories</h2>
+        <a href="https://radio-hackernews-web.vercel.app/api/podcast">
+          🎙️ Copy Podcast Feed URL
+        </a>
 
         <div className="mt-8 grid gap-6">
           {stories.map((story) => (
